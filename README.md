@@ -1,5 +1,5 @@
 # test-todo-app-using-angular
-Test To-Do App Using Angular
+Test To-Do App Using AngularJS
 
 Live demo: https://test-todo-app-using-angular.glitch.me/
 
