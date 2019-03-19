@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Test To-Do App Using AngularJS</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link rel="stylesheet" href="/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
+    <script src="/script.js" defer></script>
+  </head>  
+  <body>
+    <div id="app" ng-app="myApp" ng-controller="myCtrl">
+      <div>
+        <h1>New To-Do:</h1>
+        <div id="new-to-do">
+          <input ng-model="newToDo"
+                 ng-keyup="$event.keyCode == 13 && add(newToDo)"
+                 placeholder="Type here.">
+          <button ng-click="add(newToDo)"
+                  ng-disabled="!newToDo"
+                  ng-class="{'has-data':newToDo}">
+            +
+          </button>
+        </div>
+      </div>
+      <div ng-if="todos.length > 0">
+        <h1>To-Do's:</h1>
+        <div ng-repeat="todo in todos track by $index">
+          <input id="{{ 'todo-' + $index }}"
+                 ng-model="todo"
+                 ng-change="edit(todo, $index)">
+          <button class="delete" ng-click="delete($index)">
+            X
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <script>
+      var app = angular.module('myApp', []);
+      app.controller('myCtrl', function($scope) {
+        $scope.newToDo = '';
+        $scope.todos = [];
+        $scope.todosTemp = [];
+        $scope.add = function(todo) {
+          if (todo) {
+            $scope.todosTemp.push(todo);
+            $scope.todos = angular.copy($scope.todosTemp);
+            $scope.newToDo = '';
+          }
+        };
+        $scope.edit = function(todo, index) {
+          $scope.todosTemp[index] = todo;
+          document.getElementById("todo-" + index).focus();
+        };
+        $scope.delete = function(index) {
+          $scope.todosTemp.splice(index, 1);
+          $scope.todos = angular.copy($scope.todosTemp);
+        };
+      });
+    </script>
+  </body>
+</html>
