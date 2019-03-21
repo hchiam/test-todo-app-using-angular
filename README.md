@@ -1,7 +1,7 @@
 # test-todo-app-using-angular
 Test To-Do App Using AngularJS
 
-Live demo: https://test-todo-app-using-angular.glitch.me/
+Live demo: https://codepen.io/hchiam/full/PLBKpW or https://test-todo-app-using-angular.glitch.me/
 
 Plan:
 - Use glitch.com
