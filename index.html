@@ -31,13 +31,22 @@
         <div ng-repeat="todo in todos track by $index">
           <input id="{{ 'todo-' + $index }}"
                  ng-model="todo"
-                 ng-change="edit(todo, $index)">
-          <button class="delete" ng-click="delete($index)">
+                 ng-change="edit(todo, $index)"
+                 ng-blur="notEditing()">
+          <button class="delete" 
+                  ng-click="delete($index)"
+                  ng-class="{'editing-data':isEditing==$index}">
             X
           </button>
         </div>
         <p>(List stored locally: try refreshing this page.)</p>
       </div>
+    </div>
+
+    <!-- show off -->
+    <div style="position: relative; margin: 10%;">
+      <input id="input" type="text" onkeyup="update()" style="text-align: left;" placeholder="Try a sentence with words like 'click'/'type'/'check' in it." title="Try a sentence with words like 'click'/'type'/'check' in it."/>
+      <div id="repeat"></div>
     </div>
   </body>
 </html>

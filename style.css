@@ -28,6 +28,12 @@ button {
 button.has-data {
   background: #8abdae;
   color: white;
+  padding: 1em;
+}
+
+button.editing-data {
+  padding: 1em;
+  transition: 0.1s;
 }
 
 button.delete {
@@ -43,6 +49,7 @@ button.has-data:hover {
 button.delete:hover {
   background: #eb3030;
   box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  padding: 1em;
 }
 
 input {
@@ -67,4 +74,31 @@ input:hover {
 
 input[id^='todo-'] {
   margin-bottom: 0.5em;
+}
+
+#input,
+#repeat {
+  height: 20px;
+  width: 100%;
+  border: none;
+  font-family: avenir, arial;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 10px;
+  border-radius: 3px;
+}
+
+#input {
+  color: rgba(255,255,255,0);
+  background: rgba(255,255,255,0);
+  caret-color: black;
+}
+
+#repeat {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: -1;
+  color: grey;
+  background: white;
 }

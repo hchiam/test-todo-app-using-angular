@@ -25,7 +25,13 @@ app.controller('myCtrl', ['$scope', '$window', function($scope, $window) {
   };
   $scope.edit = function(todo, index) {
     $scope.todosTemp[index] = todo;
+    $scope.todos = angular.copy($scope.todosTemp);
+    $window.localStorage.setItem('todos', JSON.stringify($scope.todos));
     document.getElementById("todo-" + index).focus();
+    $scope.isEditing = index;
+  };
+  $scope.notEditing = function() {
+    $scope.isEditing = -1;
   };
   $scope.delete = function(index) {
     $scope.todosTemp.splice(index, 1);
@@ -33,3 +39,32 @@ app.controller('myCtrl', ['$scope', '$window', function($scope, $window) {
     $window.localStorage.setItem('todos', JSON.stringify($scope.todos));
   };
 }]);
+
+
+
+///////////////////////////////////
+
+document.getElementById('repeat').innerHTML = "Try a sentence with words like 'click'/'type'/'check' in it.";
+
+function update() {
+  var newText = document.getElementById('input').value;
+  newText = lowercaseFirstLetter(newText);
+  newText = highlight(newText, 'click', 'blue');
+  newText = highlight(newText, 'hit', 'blue');
+  newText = highlight(newText, 'type', 'brown');
+  newText = highlight(newText, 'enter', 'brown');
+  newText = highlight(newText, 'check', 'green');
+  newText = highlight(newText, 'verify', 'green');
+  document.getElementById('repeat').innerHTML = newText;
+}
+
+function highlight(sentence, word, color) {
+  return sentence.replace(
+    word, // new RegExp(word, 'g'), 
+    '<span style="color:' + color + ';">' + word + '</span>'
+  );
+}
+
+function lowercaseFirstLetter(string) {
+  return string.charAt(0).toLowerCase() + string.slice(1);
+}
