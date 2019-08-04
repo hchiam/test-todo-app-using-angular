@@ -14,9 +14,10 @@
   <body>
     <div id="app" ng-app="myApp" ng-controller="myCtrl">
       <div>
-        <h1>New To-Do:</h1>
+        <h1 ng-click="goToInputField()">New To-Do:</h1>
         <div id="new-to-do">
-          <input ng-model="newToDo"
+          <input id="new-to-do-input"
+                 ng-model="newToDo"
                  ng-keyup="$event.keyCode == 13 && add(newToDo)"
                  placeholder="Type here.">
           <button ng-click="add(newToDo)"

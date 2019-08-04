@@ -38,6 +38,9 @@ app.controller('myCtrl', ['$scope', '$window', function($scope, $window) {
     $scope.todos = angular.copy($scope.todosTemp);
     $window.localStorage.setItem('todos', JSON.stringify($scope.todos));
   };
+  $scope.goToInputField = function() {
+    document.getElementById('new-to-do-input').focus();
+  };
 }]);
 
 
